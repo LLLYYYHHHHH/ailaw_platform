@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>多模型测试台 · 实验工作区</title><link rel="stylesheet" href="/styles.css"><script src="/app.js" defer></script></head>
+<body>
+<header class="topbar"><div class="brand"><span class="brand-icon">M</span><strong>多模型测试台</strong><span class="top-pill">研究原型</span></div><span class="local-label">本机工作区</span></header>
+<main>
+<div class="page-heading"><div><p class="eyebrow">MODEL COMPARISON WORKSPACE</p><h1>大模型生成内容评测</h1><p>支持同时提问，同屏生成并标注</p></div><div class="connection"><span class="dot"></span><span id="modeBadge">正在读取模型配置…</span></div></div>
+<section class="panel composer" aria-label="创建实验">
+<div class="section-heading"><h2><span class="step">01</span> 发起一次实验</h2><div class="toolbar"><label class="sr-only" for="mode">测试模式</label><select id="mode"><option value="real">真实模型</option><option value="mock">模拟演示</option></select><button class="quiet" id="refresh" type="button">刷新模型配置</button></div></div>
+<label for="question">测试问题 <span class="muted">任意领域均可</span></label><textarea id="question" rows="3" maxlength="20000" placeholder="描述你想测试的问题，或粘贴一段待分析的材料…"></textarea>
+<details class="prompt-details"><summary>系统提示词 · 可选</summary><label class="sr-only" for="prompt">系统提示词</label><textarea id="prompt" rows="2" maxlength="10000" placeholder="例如：请说明依据，并指出哪些信息仍需确认。"></textarea></details>
+<div class="composer-footer"><div id="models" class="models" aria-label="参与模型"></div><button id="run" class="primary" disabled type="button">开始对比 <span aria-hidden="true">↗</span></button></div><p class="helper" id="configHint">密钥在后端保存。真实模型调用按服务商规则计费。</p>
+</section>
+<section class="results-section" aria-label="对比与评价">
+<div class="section-heading"><h2><span class="step">02</span> 对比与评价</h2><div class="toolbar"><button id="export" class="secondary" disabled type="button">导出 JSON</button><button id="exportCsv" class="secondary" disabled type="button">导出 CSV</button></div></div>
+<div class="evaluation-settings"><div><label for="reviewer">评价人昵称</label><input id="reviewer" maxlength="100" placeholder="例如：研究员 A"></div><div class="rubric-setting"><label for="dimensions">评分项 <span class="muted">逗号分隔 · 每项 1–5 分</span></label><input id="dimensions" value="正确性,完整性,清晰度" maxlength="450"><button id="applyDimensions" class="quiet" type="button">应用评分项</button></div></div>
+<p id="status" class="status" role="status">准备就绪。选择模型并开始第一轮对比。</p><p class="helper">评分、备注和片段标记需保存后才会进入导出；片段标记是待复核意见。</p>
+<div id="answers" class="answers"><div class="empty-state"><div class="empty-icon">⇄</div><h3>同一个问题，看看不同的回答。</h3><p>完成实验后，可以按维度评分，或选中回答中的片段记录问题。</p></div></div>
+</section>
+<section class="panel history-panel" aria-label="历史实验"><div class="section-heading"><h2><span class="step">03</span> 实验档案</h2><button id="refreshHistory" class="quiet" type="button">刷新历史</button></div><div class="history-tools"><label class="sr-only" for="search">搜索历史实验</label><input id="search" type="search" placeholder="搜索问题或实验编号"><span class="helper">最近 100 次实验 · 运行和评价记录保存在本机</span></div><div id="history" class="history-list"></div></section>
+<footer>原型 0.3 · 模型回答与人工评价分别保存 · 当前供本机测试</footer>
+</main></body></html>
